@@ -2,7 +2,7 @@ import os
 
 """
 function you can interact with:
-1. initialization(program_name, program_ver)
+1. ff(program_name, program_ver) initialization
     when initializing foxy-functions specify the name and revision of you app
 
 2. display_menu(self, header, menu)
