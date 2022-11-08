@@ -27,6 +27,9 @@ function you can interact with:
     
 6. error(text)
     displays an error message
+    
+7. get_input(type)
+    foxy functions in making sure that it gets legal input STR, INT, FLOAT
 """
 
 class ff():
