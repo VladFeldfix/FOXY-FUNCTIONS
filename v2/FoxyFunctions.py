@@ -28,8 +28,9 @@ function you can interact with:
 6. error(text)
     displays an error message
     
-7. get_input(type)
-    foxy functions in making sure that it gets legal input STR, INT, FLOAT
+7. get_input(text, type)
+    text = input text for the user
+    type = foxy functions in making sure that it gets legal input STR, INT, FLOAT
 """
 
 class ff():
@@ -71,8 +72,23 @@ class ff():
         spaces = leng - len(line)
         return line+" "*spaces
       
-    def exit():
+    def exit(self):
         input("DONE >")
     
     def error(self, text):
         input("ERROR! "+text+" >")
+    
+    def get_input(self, text, type):
+        inp = input(text)
+        type = type.upper()
+        if type == "INT":
+            try:
+                inp = int(inp)
+            except:
+                self.error("INVALID INPUT")
+        elif type == "FLOAT":
+            try:
+                inp = float(inp)
+            except:
+                self.error("INVALID INPUT")
+        return inp
