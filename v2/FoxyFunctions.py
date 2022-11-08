@@ -86,9 +86,11 @@ class ff():
                 inp = int(inp)
             except:
                 self.error("INVALID INPUT")
+                self.get_input(text, type)
         elif type == "FLOAT":
             try:
                 inp = float(inp)
             except:
                 self.error("INVALID INPUT")
+                self.get_input(text, type)
         return inp
