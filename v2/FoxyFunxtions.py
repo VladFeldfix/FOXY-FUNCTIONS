@@ -1,6 +1,8 @@
 import os
 
 """
+FOXY FUNCTIONS v1.0
+
 function you can interact with:
 1. ff(program_name, program_ver) initialization
     when initializing foxy-functions specify the name and revision of you app
@@ -18,13 +20,14 @@ function you can interact with:
 
 class ff():
     def __init__(self, program_name, program_ver):
+        self.version = "1.0"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.display_header()
     
     # private
     def display_header(self):
-        display_expression = "-- "+self.program_name+" v"+self.program_ver+" --"
+        display_expression = "-- "+self.program_name+" v"+self.program_ver+".ff."+self.version+" --"
         print("-"*len(display_expression))
         print(display_expression)
         print("-"*len(display_expression))
