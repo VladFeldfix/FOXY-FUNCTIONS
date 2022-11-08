@@ -4,7 +4,7 @@ import os
 FOXY FUNCTIONS v1.0
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
-    from FoxyFunctions import ff
+    from FoxyFunxtions import ff
 Then initialize foxyfunctions as following 
     ff("your program name", "your program version")
 
@@ -45,7 +45,6 @@ class ff():
 
     # header for example: MAIN MENU, menu structure exmple: [('start', start), ('edit', edit), ('exit', exit)]
     def display_menu(self, header, menu):
-        os.system('cls') # clear screen
         print(header)
         i = 0
         
@@ -67,6 +66,7 @@ class ff():
             self.display_menu(header, menu)
     
     def display_header(self):
+        os.system('cls') # clear screen
         display_expression = "-- "+self.program_name+" v"+self.program_ver+" ff"+self.version+" --"
         print("-"*len(display_expression))
         print(display_expression)
