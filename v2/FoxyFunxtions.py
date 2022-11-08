@@ -35,7 +35,7 @@ class ff():
     
     # private
     def display_header(self):
-        display_expression = "-- "+self.program_name+" v"+self.program_ver+".ff."+self.version+" --"
+        display_expression = "-- "+self.program_name+" v"+self.program_ver+" ff."+self.version+" --"
         print("-"*len(display_expression))
         print(display_expression)
         print("-"*len(display_expression))
