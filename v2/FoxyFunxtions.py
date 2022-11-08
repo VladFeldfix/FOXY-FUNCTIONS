@@ -7,14 +7,17 @@ function you can interact with:
 1. ff(program_name, program_ver) initialization
     when initializing foxy-functions specify the name and revision of you app
 
-2. display_menu(self, header, menu)
+2. display_menu(header, menu)
     the header is the name of the menu (for example: MAIN MENU, SETTINGS ect...)
     the menu is a list of tuples that specify the menu text and the function it is activating. (for example: [('f', f), ('g', g)])
 
-3. error(text)
+3. display_line(line, leng)
+    for example: line="hello world", leng=20 hello_world_________ where _ is an empty space not underscore
+
+4. error(text)
     displays an error message
 
-4. exit()
+5. exit()
     finishes the program
 """
 
@@ -24,6 +27,11 @@ class ff():
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.display_header()
+    
+    # public
+    def display_line(self, line, leng):
+        spaces = leng - len(line)
+        return line+" "*spaces
     
     # private
     def display_header(self):
