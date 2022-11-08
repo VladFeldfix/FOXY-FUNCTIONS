@@ -31,6 +31,9 @@ function you can interact with:
 7. get_input(text, type)
     text = input text for the user
     type = foxy functions in making sure that it gets legal input STR, INT, FLOAT
+
+8. indexed_print(text)
+    displays output with a line number
 """
 
 class ff():
@@ -38,6 +41,7 @@ class ff():
         self.version = "1.0"
         self.program_name = program_name
         self.program_ver = str(program_ver)
+        self.LINE_NUMBER = 1
 
     # header for example: MAIN MENU, menu structure exmple: [('start', start), ('edit', edit), ('exit', exit)]
     def display_menu(self, header, menu):
@@ -94,3 +98,7 @@ class ff():
                 self.error("INVALID INPUT")
                 self.get_input(text, type)
         return inp
+    
+    def indexed_print(self, text):
+        print(str(self.LINE_NUMBER)+". "+text)
+        self.LINE_NUMBER += 1
