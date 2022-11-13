@@ -57,13 +57,15 @@ class ff():
             print(num+". "+item[0])
         
         # get user input
-        user_input = input("> ")
-        if user_input in valid_selections:
-            call_function = menu[int(user_input)-1][1]
-            call_function()
-        else:
-            self.internal_error("INVALID INPUT")
-            self.display_menu(header, menu)
+        err = True
+        while err:
+            user_input = input("> ")
+            if user_input in valid_selections:
+                err = False
+                call_function = menu[int(user_input)-1][1]
+                call_function()
+            else:
+                self.error("INVALID INPUT")
     
     def display_header(self):
         os.system('cls') # clear screen
