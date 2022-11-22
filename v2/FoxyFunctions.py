@@ -1,5 +1,5 @@
 """
-FOXY FUNCTIONS v1.0
+FOXY FUNCTIONS v1.1
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunxtions import ff
