@@ -1,10 +1,8 @@
-import os
-
 """
 FOXY FUNCTIONS v1.0
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
-    from FoxyFunctions import ff
+    from FoxyFunxtions import ff
 Then initialize foxyfunctions as following 
     ff("your program name", "your program version")
 
@@ -38,7 +36,7 @@ function you can interact with:
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "1.0"
+        self.version = "1.1"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
@@ -85,7 +83,7 @@ class ff():
         input("ERROR! "+text+" >")
     
     def get_input(self, text, type):
-        inp = input(text)
+        inp = input(text+" >")
         type = type.upper()
         if type == "INT":
             try:
