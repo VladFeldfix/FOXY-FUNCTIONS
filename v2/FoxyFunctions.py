@@ -33,6 +33,7 @@ function you can interact with:
 8. indexed_print(text)
     displays output with a line number
 """
+import os
 
 class ff():
     def __init__(self, program_name, program_ver):
