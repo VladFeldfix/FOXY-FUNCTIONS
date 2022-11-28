@@ -4,7 +4,7 @@
 FOXY FUNCTIONS v2.2
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
-    from FoxyFunxtions import ff
+    from FoxyFunctions import ff
 Then initialize foxyfunctions as following 
     ff("your program name", "your program version")
 
