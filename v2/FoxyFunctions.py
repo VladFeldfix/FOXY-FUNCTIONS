@@ -1,7 +1,7 @@
 #######################################################################################################################################################
 
 """
-FOXY FUNCTIONS v1.2
+FOXY FUNCTIONS v2.2
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunxtions import ff
@@ -41,7 +41,7 @@ import os
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "1.2"
+        self.version = "2.2"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
