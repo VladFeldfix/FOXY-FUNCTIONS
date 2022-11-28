@@ -1,5 +1,7 @@
+#######################################################################################################################################################
+
 """
-FOXY FUNCTIONS v1.1
+FOXY FUNCTIONS v1.2
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunxtions import ff
@@ -33,11 +35,13 @@ function you can interact with:
 8. indexed_print(text)
     displays output with a line number
 """
+
+import sys
 import os
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "1.1"
+        self.version = "1.2"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
@@ -82,6 +86,7 @@ class ff():
     
     def error(self, text):
         input("ERROR! "+text+" >")
+        sys.exit()
     
     def get_input(self, text, type):
         inp = input(text+" >")
@@ -103,3 +108,5 @@ class ff():
     def indexed_print(self, text):
         print(str(self.LINE_NUMBER)+". "+text)
         self.LINE_NUMBER += 1
+
+#######################################################################################################################################################
