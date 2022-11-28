@@ -34,6 +34,10 @@ function you can interact with:
 
 8. indexed_print(text)
     displays output with a line number
+
+9. csv_to_list(filename)
+    returns a list object made from all the lines in a csv file
+    [[row1col1, row1col2, row1col3] , [row2col1, row2col2, row2col3] , [row3col1, row3col2, row3col3]]
 """
 
 import sys
@@ -108,5 +112,20 @@ class ff():
     def indexed_print(self, text):
         print(str(self.LINE_NUMBER)+". "+text)
         self.LINE_NUMBER += 1
+
+    def csv_to_list(self, filename):
+        result = []
+        filename = filename+".csv"
+        try:
+            file = open(filename, 'r', encoding="utf-8")
+            lines = file.readlines()
+            for line in lines:
+                line = line.replace("\n", "")
+                line = line.split(",")
+                result.append(line)
+            file.close()
+            return result
+        except:
+            self.error("CAN'T OPEN FILE "+filename)
 
 #######################################################################################################################################################
