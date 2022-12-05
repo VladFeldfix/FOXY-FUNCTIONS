@@ -1,7 +1,7 @@
 #######################################################################################################################################################
 
 """
-FOXY FUNCTIONS v2.2
+FOXY FUNCTIONS v2.3
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunctions import ff
@@ -45,7 +45,7 @@ import os
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "2.2"
+        self.version = "2.3"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
@@ -127,5 +127,41 @@ class ff():
             return result
         except:
             self.error("CAN'T OPEN FILE "+filename)
+    
+    def get_settings(self):
+        result = {}
+        try:
+            file = open("settings.txt", "r", encoding='utf-8')
+            lines = file.readlines()
+            file.close()
+            for line in lines:
+                line = line.replace("\n", "")
+                line = line.split(":")
+                result[line[0]] = line[1]
+        except:
+            self.error("CAN'T OPEN FILE settings.txt")      
+        return result
+    
+    def set_settings(self, settings):
+        # display
+        self.display_settings(settings)
+
+        # get new
+        print("\nCHANGE SETTINGS (OR LEAVE EMPTY TO AVOID CHNAGEING):")
+        for key, value in settings.items():
+            value = input(str(key)+" >") or value
+            settings[key] = value
+        
+        # save to file
+        file = open("settings.txt", "w", encoding='utf-8')
+        for key, value in settings.items():
+            file.write(str(key)+":"+str(value)+"\n")
+        file.close()
+    
+    def display_settings(self, settings):
+        print("SETTINGS:")
+        # display
+        for key, value in settings.items():
+            print(str(key)+" --> "+str(value))
 
 #######################################################################################################################################################
