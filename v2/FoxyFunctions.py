@@ -1,7 +1,7 @@
 #######################################################################################################################################################
 
 """
-FOXY FUNCTIONS v2.3
+FOXY FUNCTIONS v2.5
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunctions import ff
@@ -38,14 +38,30 @@ function you can interact with:
 9. csv_to_list(filename)
     returns a list object made from all the lines in a csv file
     [[row1col1, row1col2, row1col3] , [row2col1, row2col2, row2col3] , [row3col1, row3col2, row3col3]]
+
+10. get_settings()
+    returns a dict object with settings as key:value
+
+11. set_settings(settings)
+    changes the settings in the given settings object
+
+12. display_settings(settings)
+    display the given settings file
+
+13. help()
+    display help file
+
+14. today()
+    returns todays date in the format yyyy-mm-dd as a string
 """
 
 import sys
 import os
+import datetime
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "2.3"
+        self.version = "2.5"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
@@ -159,9 +175,20 @@ class ff():
         file.close()
     
     def display_settings(self, settings):
-        print("SETTINGS:")
+        print("\nSETTINGS:")
         # display
         for key, value in settings.items():
             print(str(key)+" --> "+str(value))
+        
+    def help(self):
+        os.popen("help.html")
+
+    def today():
+        # get today
+        now = datetime.datetime.now()
+        yyyy = str(now.year)
+        mm = str(now.month).zfill(2)
+        dd = str(now.day).zfill(2)
+        return yyyy+"-"+mm+"-"+dd
 
 #######################################################################################################################################################
