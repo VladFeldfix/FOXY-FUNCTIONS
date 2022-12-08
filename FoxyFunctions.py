@@ -183,7 +183,7 @@ class ff():
     def help(self):
         os.popen("help.html")
 
-    def today():
+    def today(self):
         # get today
         now = datetime.datetime.now()
         yyyy = str(now.year)
