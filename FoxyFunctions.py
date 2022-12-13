@@ -1,7 +1,7 @@
 #######################################################################################################################################################
 
 """
-FOXY FUNCTIONS v2.6
+FOXY FUNCTIONS v2.7
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunctions import ff
@@ -53,6 +53,9 @@ function you can interact with:
 
 14. today()
     returns todays date in the format yyyy-mm-dd as a string
+
+15. display_progress_bar(percent)
+    displays a process bar in the given percantage
 """
 
 import sys
@@ -61,7 +64,7 @@ import datetime
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "2.6"
+        self.version = "2.7"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
@@ -190,5 +193,9 @@ class ff():
         mm = str(now.month).zfill(2)
         dd = str(now.day).zfill(2)
         return yyyy+"-"+mm+"-"+dd
+    
+    def display_progress_bar(self, percent):
+        BAR = '█' * percent + '-' * (100 - percent)
+        print("PROGRESS |"+str(BAR)+"|"+str(percent)+"% LOADED", end = "\r")
 
 #######################################################################################################################################################
