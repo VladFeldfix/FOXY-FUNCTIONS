@@ -1,7 +1,7 @@
 #######################################################################################################################################################
 
 """
-FOXY FUNCTIONS v2.7
+FOXY FUNCTIONS v2.8
 
 To add FoxyFunctions to your code put the file FoxyFunxtions.py in the same folder as your file and write: 
     from FoxyFunctions import ff
@@ -56,6 +56,9 @@ function you can interact with:
 
 15. display_progress_bar(percent)
     displays a process bar in the given percantage
+
+16. display_progress_bar_winxp(percent)
+    displays a process bar in the given percantage (works differently in windows XP)
 """
 
 import sys
@@ -64,14 +67,19 @@ import datetime
 
 class ff():
     def __init__(self, program_name, program_ver):
-        self.version = "2.7"
+        self.version = "2.8"
         self.program_name = program_name
         self.program_ver = str(program_ver)
         self.LINE_NUMBER = 1
+        self.console = []
+    
+    def Print(self, text):
+        print(text)
+        self.console.append(text)
 
     # header for example: MAIN MENU, menu structure exmple: [('start', start), ('edit', edit), ('exit', exit)]
     def display_menu(self, header, menu):
-        print(header)
+        self.Print(header)
         i = 0
         
         # display main menu items
@@ -80,7 +88,7 @@ class ff():
             i += 1
             num = str(i)
             valid_selections.append(num)
-            print(num+". "+item[0])
+            self.Print(num+". "+item[0])
         
         # get user input
         err = True
@@ -96,9 +104,9 @@ class ff():
     def display_header(self):
         os.system('cls') # clear screen
         display_expression = "-- "+self.program_name+" v"+self.program_ver+" ff"+self.version+" --"
-        print("-"*len(display_expression))
-        print(display_expression)
-        print("-"*len(display_expression))
+        self.Print("-"*len(display_expression))
+        self.Print(display_expression)
+        self.Print("-"*len(display_expression))
         
     def display_line(self, line, leng):
         spaces = leng - len(line)
@@ -129,7 +137,7 @@ class ff():
         return inp
     
     def indexed_print(self, text):
-        print(str(self.LINE_NUMBER)+". "+text)
+        self.Print(str(self.LINE_NUMBER)+". "+text)
         self.LINE_NUMBER += 1
 
     def csv_to_list(self, filename):
@@ -166,7 +174,7 @@ class ff():
         self.display_settings(settings)
 
         # get new
-        print("\nCHANGE SETTINGS (OR LEAVE EMPTY TO AVOID CHNAGEING):")
+        self.Print("\nCHANGE SETTINGS (OR LEAVE EMPTY TO AVOID CHNAGEING):")
         for key, value in settings.items():
             value = input(str(key)+" >") or value
             settings[key] = value
@@ -178,10 +186,10 @@ class ff():
         file.close()
     
     def display_settings(self, settings):
-        print("\nSETTINGS:")
+        self.Print("\nSETTINGS:")
         # display
         for key, value in settings.items():
-            print(str(key)+" --> "+str(value))
+            self.Print(str(key)+" --> "+str(value))
         
     def help(self):
         os.popen("help.html")
@@ -193,9 +201,28 @@ class ff():
         mm = str(now.month).zfill(2)
         dd = str(now.day).zfill(2)
         return yyyy+"-"+mm+"-"+dd
-    
+    """
     def display_progress_bar(self, percent):
-        BAR = '█' * percent + '-' * (100 - percent)
-        print("PROGRESS |"+str(BAR)+"|"+str(percent)+"% LOADED", end = "\r")
+        # display the bar
+        pc = int(percent / 2)
+        BAR = str("█"*pc) + str("-"*(50-pc))
+        progress_bar = "PROGRESS "+"|"+BAR+"| "+str(percent)+"% COMPLETE"
+        print(progress_bar, end = "\r")
+    """
+        
+    def display_progress_bar(self, percent):
+        # clear and redraw the console for windows XP
+        os.system('cls')
+        for line in self.console:
+            print(line)
+
+        # display the bar
+        pc = int(percent / 2)
+        BAR = str("█"*pc) + str("-"*(50-pc))
+        progress_bar = "PROGRESS "+"|"+BAR+"| "+str(percent)+"% COMPLETE"
+        if percent < 100:
+            print(progress_bar)
+        else:
+            self.Print(progress_bar)
 
 #######################################################################################################################################################
