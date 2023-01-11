@@ -7,6 +7,8 @@ class ff:
     def __init__(self, program_name, rev, main_menu):
         # GLOBAL VALUES
         self.console_line_number = 0
+        self.form_data = {}
+
         # CREATE GUI
         
         # main window
@@ -47,9 +49,52 @@ class ff:
         self.console.insert(END, str(self.console_line_number)+". "+text+"\n")
         self.console.config(state=DISABLED)
         self.console.see(END)
+
+    def form(self, form_title, variables):
+        # top window
+        self.inputbox = Toplevel(self.root)
+        self.inputbox.geometry("320x240")
+        self.inputbox.minsize(320,240)
+        self.inputbox.columnconfigure(0, weight=1)
+        self.inputbox.rowconfigure(0, weight=1)
+
+        # frame
+        frame = LabelFrame(self.inputbox, text=form_title)
+        frame.grid(sticky='nsew', padx=10, pady=10)
+        frame.columnconfigure(0, weight=1)
+
+        # enteries
+        i = 0
+        self.form_values = {}
+        for var in variables:
+            lbl = Label(frame, text=var+":")
+            lbl.grid(column=0, row=i, sticky='w', padx=5)
+            entr = Entry(frame)
+            entr.grid(column=0, row=i+1, sticky='nsew', padx=5, pady=(0,5), columnspan=2)
+            self.form_values[var] = entr
+            i += 2
+
+        # submit button
+        btn = Button(frame, text="Submit", command=self.form_submit)
+        btn.grid(column=0, sticky='nsew', row=i, padx=5, pady=5)
+        # cancel button
+        btn = Button(frame, text="Cancel", command=self.form_cancel)
+        btn.grid(column=1, sticky='nsew', row=i, padx=5, pady=5)
     
-    def progress_bar_value(self, percent):
+    def form_submit(self):
+        for key, value in self.form_values.items():
+            self.form_data[key] = value.get()
+        print(self.form_data)
+        self.inputbox.destroy()
+    
+    def form_cancel(self):
+        self.inputbox.destroy()
+
+    def progress_bar_value_set(self, percent):
         self.progress['value'] = percent
+    
+    def progress_bar_value_get(self):
+        return self.progress['value']
     
     def settings_display(self):
         # top window
@@ -82,9 +127,11 @@ class ff:
             entr.insert(END, line[1])
             self.settings_values[line[0]] = entr
             i += 1
+        
         # save button
         btn = Button(frame, text="Save", command=self.settings_save)
         btn.grid(column=1, sticky='nsew', row=i, padx=5, pady=5)
+        # cancel button
         btn = Button(frame, text="Cancel", command=self.settings_cancel)
         btn.grid(column=2, sticky='nsew', row=i, padx=5, pady=5)
     
@@ -116,13 +163,15 @@ class testclass:
         main_menu = (("F FUNTION", self.f), ("G FUNTION", self.g))
         self.ff = ff("TEST PROGRAM", "2.0", main_menu)
         self.ff.write("hello world")
-        self.ff.progress_bar_value(10)
         self.ff.run()
     
     def f(self):
         self.ff.write("f function")
+        p = self.ff.progress_bar_value_get()
+        self.ff.progress_bar_value_set(p + 1)
 
     def g(self):
         self.ff.write("g function")
+        self.ff.form("Insert data", ("VAR1", "VAR2", "VAR3"))
 
 testclass()
